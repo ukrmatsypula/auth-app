@@ -1,8 +1,10 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "../css/style.css";
 import UI from "./config/ui.config";
+import { validate } from "./helpers/validate";
 
 const { form, inputEmail, inputPassword } = UI;
+const inputs = [inputEmail, inputPassword];
 
 // Events
 form.addEventListener("submit", (e) => {
@@ -13,5 +15,11 @@ form.addEventListener("submit", (e) => {
 
 // Handlers
 function onSubmit() {
-  console.log('submited')
+  const isValidForm = inputs.every((el) => {
+    const isValideInput = validate(el);
+
+    return isValideInput;
+  });
+
+  console.log(isValidForm);
 }
